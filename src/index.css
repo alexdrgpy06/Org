@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #050505;
+  --color-card: #151619;
+  --color-card-hover: #1c1d21;
+  --color-ink: #141414;
+  --color-line: #333333;
+  --color-accent: #00FF00;
+  --color-accent-dim: rgba(0, 255, 0, 0.15);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8E9299;
+  --color-danger: #FF4444;
+  --color-warning: #FFBB33;
+  
+  --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
+  --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'Georgia', serif;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Data Grid Styles */
+.data-row {
+  display: grid;
+  grid-template-columns: 40px 1.5fr 1fr 1fr;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-line);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.data-row:hover {
+  background: var(--color-card-hover);
+}
+
+.col-header {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 11px;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+}
+
+.data-value {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+/* Terminal/Console Styles */
+.terminal-output {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-accent);
+}
+
+.terminal-line {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-line::before {
+  content: ">";
+  color: var(--color-text-secondary);
+}
+
+/* Glitch Effect for Title */
+.glitch {
+  position: relative;
+  color: white;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg);
+}
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 red;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+.glitch::after {
+  left: -2px;
+  text-shadow: -1px 0 blue;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(10px, 9999px, 80px, 0); }
+  20% { clip: rect(60px, 9999px, 10px, 0); }
+  40% { clip: rect(30px, 9999px, 40px, 0); }
+  60% { clip: rect(90px, 9999px, 20px, 0); }
+  80% { clip: rect(20px, 9999px, 100px, 0); }
+  100% { clip: rect(50px, 9999px, 60px, 0); }
+}
+@keyframes glitch-anim-2 {
+  0% { clip: rect(65px, 9999px, 100px, 0); }
+  20% { clip: rect(10px, 9999px, 50px, 0); }
+  40% { clip: rect(80px, 9999px, 20px, 0); }
+  60% { clip: rect(30px, 9999px, 90px, 0); }
+  80% { clip: rect(100px, 9999px, 40px, 0); }
+  100% { clip: rect(40px, 9999px, 70px, 0); }
+}
